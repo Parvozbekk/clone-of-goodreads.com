@@ -82,11 +82,13 @@ class RegistrationTestCase(TestCase):
         self.assertFormError(response, "form", "username", "A user with that username already exists.")
 
 class LoginTestCase(TestCase):
-    def test_successfull_login(self):
-        db_user = User.objects.create(username='Parvoz', first_name='Parvoz')
-        db_user.set_password('somepassword')
-        db_user.save()
 
+    def setUp(self):
+        self.db_user = User.objects.create(username='Parvoz', first_name='Parvoz')
+        self.db_user.set_password('somepassword')
+        self.db_user.save()
+
+    def test_successfull_login(self):
         self.client.post(
             reverse("users:login"),
                     data = {
@@ -99,11 +101,15 @@ class LoginTestCase(TestCase):
 
         self.assertTrue(user.is_authenticated)
 
-    def test_wrong_credentials(self):
-        db_user = User.objects.create(username='Parvoz', first_name='Parvoz')
-        db_user.set_password('somepassword')
-        db_user.save()
+    def test_logout(self):
+        self.client.login(username = "Parvoz", password = "somepassword")
 
+        self.client.get(reverse("users:logout"))
+
+        user = get_user(self.client)
+        self.assertFalse(user.is_authenticated)
+
+    def test_wrong_credentials(self):
         self.client.post(
             reverse("users:login"),
             data={
