@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register Page</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %} Register Page {% endblock %}
+
+{% block content %}
   <h1>Register Page</h1>
 
   <form method="post" action="{% url 'users:register' %}">
@@ -14,5 +12,5 @@
 
       <button type="submit">Submit</button>
   </form>
-</body>
-</html>
+
+{% endblock %}
