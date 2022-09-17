@@ -62,7 +62,7 @@ class LogoutView(LoginRequiredMixin ,View):
 class ProfileUpdateView(LoginRequiredMixin, View):
     def get(self, request):
         user_update_form = UserUpdateForm(instance=request.user)
-        return render(request, "users/profile_edit.html", {"form":user_update_form})
+        return render(request, "users/profile_edit.html", {"form":UserUpdateForm})
 
     def post(self, request):
         user_update_form = UserUpdateForm(instance=request.user, data=request.POST)

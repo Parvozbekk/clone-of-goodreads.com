@@ -75,7 +75,7 @@ DATABASES = {
         'NAME': 'clone',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-        'USER': 'postgres',
+        'User': 'postgres',
         'PASSWORD': 'postgresql'
     }
 }
@@ -111,6 +111,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = "users.CustomUser"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -121,3 +122,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
