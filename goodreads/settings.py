@@ -75,7 +75,7 @@ DATABASES = {
         'NAME': 'clone',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-        'User': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': 'postgresql'
     }
 }
