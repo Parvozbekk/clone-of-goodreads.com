@@ -167,11 +167,7 @@ class ProfileTestCase(TestCase):
         self.assertEqual(response.url, reverse("users:login") + "?next=/users/profile/")
 
     def test_profile_details(self):
-        user = CustomUser
-
-
-
-        CustomUser.objects.create(
+        user = CustomUser.objects.create(
             username = "Parvoz",
             first_name = "Parvoz",
             last_name = "Eshkuvvatov",
