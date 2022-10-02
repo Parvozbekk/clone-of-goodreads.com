@@ -3,9 +3,9 @@
 {% block title %} Home Page {% endblock %}
 
 {% block content %}
-    <h3>Home page</h3>
+    <h3>All reviews</h3>
 
-    {% for review in book_reviews %}
+    {% for review in page_obj %}
         <div class="container posts-content">
         <div class="row">
             <div class="col-lg-6">
@@ -20,7 +20,7 @@
                     </div>
 
                     <p>
-                        {{ review.comment }}
+                        {{ review.comment | truncatechars:200 }}
                     </p>
                     <img class="cover-pic center" src="{{ review.book.cover_picture.url }}">
                     </div>
@@ -29,4 +29,23 @@
         </div>
     </div>
     {% endfor %}
+
+    <nav>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a href="#" class="page-link">{{ page_obj.number }}</a>
+                </li>
+
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
 {% endblock %}
