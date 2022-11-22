@@ -31,9 +31,11 @@ INSTALLED_APPS = [
     # external
     "crispy_forms",
     "crispy_bootstrap5",
+    'rest_framework',
     # local
     'books',
     'users',
+    'api'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
